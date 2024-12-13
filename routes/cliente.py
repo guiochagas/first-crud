@@ -10,7 +10,14 @@ def lista_clientes():
 
 @cliente_route.route("/", methods=["POST"]) # Inserir os dados do cliente.
 def inserir_cliente():
-    return {"ok": "ok"}
+    
+    nome = request.form.get('nome')    
+    email = request.form.get('email')
+    
+    CLIENTES.append( { "nome": nome,
+                      "email": email } )
+    
+    return redirect(url_for('cliente.lista_clientes'))
 
 
 @cliente_route.route("/new") # Formulário para cadastrar um cliente.
